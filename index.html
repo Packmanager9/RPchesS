@@ -251,24 +251,24 @@ class Team{
     constructor(side){
         this.crew = []
         if(side == 0){
-            let crew1 = new Crew(0, 0,1)
-            let crew2 = new Crew(1, 0, 0)
-            let crew3 = new Crew(6, 0, 1)
-            let crew4 = new Crew(7, 0, 0)
-            let crew5 = new Crew(2, 0, 2)
-            let crew6 = new Crew(3, 0, 1)
-            let crew7 = new Crew(8, 0, 2)
-            let crew8 = new Crew(9, 0, 1)
-            let crew9 = new Crew(4, 0, 0)
-            let crew10 = new Crew(5, 0, 2)
+            let crew1 = new Crew(0, 0, 0)
+            let crew2 = new Crew(1, 0, 1)
+            let crew3 = new Crew(2, 0, 2)
+            let crew4 = new Crew(3, 0, 0)
+            let crew5 = new Crew(4, 0, 1)
+            let crew6 = new Crew(5, 0, 2)
+            let crew7 = new Crew(6, 0, 0)
+            let crew8 = new Crew(7, 0, 1)
+            let crew9 = new Crew(8, 0, 2)
+            let crew10 = new Crew(9, 0, 2)
             let crew11 = new Crew(10, 0, 0)
-            let crew12 = new Crew(11, 0, 2)
-            let crew13 = new Crew(12, 0, 1)
+            let crew12 = new Crew(11, 0, 1)
+            let crew13 = new Crew(12, 0, 2)
             let crew14 = new Crew(13, 0, 0)
-            let crew15 = new Crew(14, 0, 2)
-            let crew16 = new Crew(15, 0, 1)
+            let crew15 = new Crew(14, 0, 1)
+            let crew16 = new Crew(15, 0, 2)
             let crew17 = new Crew(16, 0, 0)
-            let crew18 = new Crew(17, 0, 2)
+            let crew18 = new Crew(17, 0, 1)
             this.crew.push(crew1)
             this.crew.push(crew2)
             this.crew.push(crew3)
@@ -289,24 +289,43 @@ class Team{
             this.crew.push(crew18)
         }else{
 
-            let crew1 = new Crew(80-0, 1,1)
-            let crew2 = new Crew(80-1, 1, 0)
-            let crew3 = new Crew(80-6, 1, 1)
-            let crew4 = new Crew(80-7, 1, 0)
-            let crew5 = new Crew(80-2, 1, 2)
-            let crew6 = new Crew(80-3, 1, 1)
-            let crew7 = new Crew(80-8, 1, 2)
-            let crew8 = new Crew(80-9, 1, 1)
-            let crew9 = new Crew(80-4, 1, 0)
-            let crew10 = new Crew(80-5, 1, 2)
+            // let crew1 = new Crew(80-0, 1,1)
+            // let crew2 = new Crew(80-1, 1, 0)
+            // let crew3 = new Crew(80-6, 1, 1)
+            // let crew4 = new Crew(80-7, 1, 0)
+            // let crew5 = new Crew(80-2, 1, 2)
+            // let crew6 = new Crew(80-3, 1, 1)
+            // let crew7 = new Crew(80-8, 1, 2)
+            // let crew8 = new Crew(80-9, 1, 1)
+            // let crew9 = new Crew(80-4, 1, 0)
+            // let crew10 = new Crew(80-5, 1, 2)
+            // let crew11 = new Crew(80-10, 1, 0)
+            // let crew12 = new Crew(80-11, 1, 2)
+            // let crew13 = new Crew(80-12, 1, 1)
+            // let crew14 = new Crew(80-13, 1, 0)
+            // let crew15 = new Crew(80-14, 1, 2)
+            // let crew16 = new Crew(80-15, 1, 1)
+            // let crew17 = new Crew(80-16, 1, 0)
+            // let crew18 = new Crew(80-17, 1, 2)
+
+            let crew1 = new Crew(80-0, 1, 0)
+            let crew2 = new Crew(80-1, 1, 1)
+            let crew3 = new Crew(80-2, 1, 2)
+            let crew4 = new Crew(80-3, 1, 0)
+            let crew5 = new Crew(80-4, 1, 1)
+            let crew6 = new Crew(80-5, 1, 2)
+            let crew7 = new Crew(80-6, 1, 0)
+            let crew8 = new Crew(80-7, 1, 1)
+            let crew9 = new Crew(80-8, 1, 2)
+            let crew10 = new Crew(80-9, 1, 2)
             let crew11 = new Crew(80-10, 1, 0)
-            let crew12 = new Crew(80-11, 1, 2)
-            let crew13 = new Crew(80-12, 1, 1)
+            let crew12 = new Crew(80-11, 1, 1)
+            let crew13 = new Crew(80-12, 1, 2)
             let crew14 = new Crew(80-13, 1, 0)
-            let crew15 = new Crew(80-14, 1, 2)
-            let crew16 = new Crew(80-15, 1, 1)
+            let crew15 = new Crew(80-14, 1, 1)
+            let crew16 = new Crew(80-15, 1, 2)
             let crew17 = new Crew(80-16, 1, 0)
-            let crew18 = new Crew(80-17, 1, 2)
+            let crew18 = new Crew(80-17, 1, 1)
             this.crew.push(crew1)
             this.crew.push(crew2)
             this.crew.push(crew3)
@@ -345,14 +364,45 @@ class Team{
         this.links = []
 
         let cap3 = [0,0,0]
+
+        for(let t = 0;t<this.crew.length;t++){
+            this.crew[t].conflict = 0
+        }
         for(let t = 0;t<this.crew.length;t++){
             for(let k = t;k<this.crew.length;k++){
-                if(this.crew[t].queen == this.crew[k].queen){
-                    let link = new LineOP(this.crew[t].body, this.crew[k].body, this.crew[t].body.color, 1)
+                if(this.crew[t]!= this.crew[k]){//new
+                    if(this.crew[t].queen == this.crew[k].queen){
+                    let link = new LineOP(this.crew[t].body, this.crew[k].body, this.crew[t].body.color, 2)
                     link.guy1 = this.crew[t]
                     link.guy2 = this.crew[k]
+                    if(this.crew[t].queen==0){
+                        if(this.side == 0){
+                        link.color = "#FF8888"
+                        }else{
+                        link.color = "#AA4444"
+                        }
+                    }
+                    if(this.crew[t].queen==1){
+                        if(this.side == 0){
+                        link.color = "#88FF88"
+                        }else{
+                        link.color = "#44AA44"
+                        }
+                    }
+                    if(this.crew[t].queen==2){
+                        if(this.side == 0){
+                        link.color = "#8888FF"
+                        }else{
+                        link.color = "#4444AA"
+                        }
+                    }
                     this.links.push(link)
                     cap3[this.crew[t].queen] = 1
+                    if(link.hypotenuse() <= 70){
+                        link.guy1.conflict = 1
+                        link.guy2.conflict = 1
+                    }
+                }
                 }
             }
         }
@@ -541,6 +591,18 @@ class Board{
                     }
                 }
             }
+
+            for(let k = 0;k<this.teams[0].crew.length;k++){
+
+                if(this.teams[0].crew[k].conflict == 1){
+                        this.teams[0].crew[k].health -= 10
+                    }
+            }
+                for(let t = 0;t<this.teams[1].crew.length;t++){
+                    if(this.teams[1].crew[t].conflict == 1){
+                        this.teams[1].crew[t].health -= 10
+                    }
+                }
         }
     makeTeams(){
         this.teams = []
@@ -562,6 +624,9 @@ class Board{
 
         if(this.cald == 1){
 
+            for(let t = 0;t<this.teams.length;t++){
+            this.teams[t].draw()
+        }
             this.calcDamage()
             this.cald = 0
         }
