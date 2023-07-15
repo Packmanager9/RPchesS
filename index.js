@@ -435,7 +435,9 @@ wss.on("connection", ws => {
             sjon.ping = parseInt(JSON.parse(data).ping)
             sjon.serverID = JSON.parse(data).serverID
             for (let t = 0; t < games[ws.assigned].players.length; t++) {
+                if (t != games[ws.assigned].players.indexOf(ws)) {
                 games[ws.assigned].players[t].send(JSON.stringify(sjon))
+                }
             }
         } else {
             console.log(data)
