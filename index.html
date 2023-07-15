@@ -344,6 +344,7 @@ class Team{
     draw(){
         this.links = []
 
+        let cap3 = [0,0,0]
         for(let t = 0;t<this.crew.length;t++){
             for(let k = t;k<this.crew.length;k++){
                 if(this.crew[t].queen == this.crew[k].queen){
@@ -351,7 +352,21 @@ class Team{
                     link.guy1 = this.crew[t]
                     link.guy2 = this.crew[k]
                     this.links.push(link)
+                    cap3[this.crew[t].queen] = 1
                 }
+            }
+        }
+        if(cap3[0]+cap3[1]+cap3[2] == 3){
+
+        }else{
+            if(this.side == 0){
+                canvas_context.font = "40px arial"
+                canvas_context.fillStyle = "Black"
+                canvas_context.fillText("Black wins", 900, 350+(this.side*300))
+            }else{
+                canvas_context.font = "40px arial"
+                canvas_context.fillStyle = "White"
+                canvas_context.fillText("White wins", 900, 350+(this.side*300))
             }
         }
 
