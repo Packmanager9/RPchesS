@@ -621,6 +621,7 @@ function findIntersection(line1, line2) {
                   b.teams[JSON.parse(data).id].crew[JSON.parse(data).guy].tile = JSON.parse(data).tile
                   b.turn++
                   b.turn%=2
+                  b.cald = 1
               } 
       })
 
