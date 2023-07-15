@@ -396,6 +396,7 @@ wss.on("connection", ws => {
                 }
             }
             sjon.playerIDs = ids
+            sjon.faction = games[ws.assigned].players.length-1
             let cjon = JSON.stringify(sjon)
             cjon = JSON.parse(cjon)
             cjon.playerIDs = [ws.serverID]

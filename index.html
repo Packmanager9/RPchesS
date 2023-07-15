@@ -11,7 +11,7 @@
 let ws
 let HOST = location.origin.replace(/^http/, 'ws')
 ws = new WebSocket(HOST);
-let playerID = Math.floor(Math.random()*2)
+let playerID = 0 //Math.floor(Math.random()*2)
 
 
 
@@ -554,7 +554,7 @@ class Board{
 }
 
 
-let globalRoom = 0
+let globalRoom = Math.floor(Math.random()*9999)
 let b = new Board()
 let startgame = 0
 
@@ -562,50 +562,173 @@ let goRect = new Rectangle(1000, 500, 200, 100, "Red")
 
 class Numbox {
     constructor(){
-        this.number = 0
+        this.number = globalRoom
+        this.pressed = 0
     }
     draw(){
         if(this.number < 999){
             if(keysPressed['1']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `1`, 10)
             keysPressed['1'] = false
         }
         if(keysPressed['2']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `2`, 10)
             keysPressed['2'] = false
         }
         if(keysPressed['3']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `3`, 10)
             keysPressed['3'] = false
         }
         if(keysPressed['4']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `4`, 10)
             keysPressed['4'] = false
         }
         if(keysPressed['5']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `5`, 10)
             keysPressed['5'] = false
         }
         if(keysPressed['6']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `6`, 10)
             keysPressed['6'] = false
         }
         if(keysPressed['7']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `7`, 10)
             keysPressed['7'] = false
         }
         if(keysPressed['8']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `8`, 10)
             keysPressed['8'] = false
         }
         if(keysPressed['9']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `9`, 10)
             keysPressed['9'] = false
         }
         if(keysPressed['0']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+                }
             this.number = parseInt(this.number + `0`, 10)
             keysPressed['0'] = false
         }
+        }else{
+            if(keysPressed['1']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `1`, 10)
+            keysPressed['1'] = false
+                }
+        }
+        if(keysPressed['2']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `2`, 10)
+            keysPressed['2'] = false
+                }
+        }
+        if(keysPressed['3']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `3`, 10)
+            keysPressed['3'] = false
+                }
+        }
+        if(keysPressed['4']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `4`, 10)
+            keysPressed['4'] = false
+                }
+        }
+        if(keysPressed['5']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `5`, 10)
+            keysPressed['5'] = false
+                }
+        }
+        if(keysPressed['6']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `6`, 10)
+            keysPressed['6'] = false
+                }
+        }
+        if(keysPressed['7']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `7`, 10)
+            keysPressed['7'] = false
+                }
+        }
+        if(keysPressed['8']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `8`, 10)
+            keysPressed['8'] = false
+                }
+        }
+        if(keysPressed['9']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `9`, 10)
+            keysPressed['9'] = false
+                }
+        }
+        if(keysPressed['0']){
+                if(this.pressed == 0){
+                    this.pressed = 1
+                    this.number = 0
+            this.number = parseInt(this.number + `0`, 10)
+            keysPressed['0'] = false
+                }
+        }
+
         }
         if(keysPressed['Backspace']){
             this.number = 0
@@ -613,7 +736,9 @@ class Numbox {
         canvas_context.font = "30px arial"
         canvas_context.fillStyle = "black"
         canvas_context.fillText("Type in a number and press the button to select a room", 100, 100)
+        canvas_context.fillText("The first player in the room plays as white and goes first", 100, 150)
         canvas_context.fillText("Room: "+ this.number, 100, 200)
+        canvas_context.fillText("Press Backspace to reset room number", 100, 250)
     }
 }
 
@@ -714,6 +839,13 @@ function findIntersection(line1, line2) {
 
   Socketize(ws)
 
+  let pson = {}
+                                pson.room = globalRoom
+                                ws.send(JSON.stringify(pson))
+                                startgame = 1
+
+
+
   let newboard = 0
   function Socketize(ws) {
 
@@ -723,7 +855,10 @@ function findIntersection(line1, line2) {
       ws.addEventListener("message", ({
           data
       }) => {
-              if (playerID != JSON.parse(data).id && JSON.parse(data).id > -1 && JSON.parse(data).id < 2) {
+        if(JSON.parse(data).faction){
+            playerID = Math.abs(JSON.parse(data).faction)
+            console.log(playerID)
+        }else if (playerID != JSON.parse(data).id && JSON.parse(data).id > -1 && JSON.parse(data).id < 2) {
                   b.teams[JSON.parse(data).id].crew[JSON.parse(data).guy].tile = JSON.parse(data).tile
                   b.turn++
                   b.turn%=2
