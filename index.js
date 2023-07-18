@@ -306,6 +306,12 @@ wss.on("connection", ws => {
                 tson.members.push(tournaments[t].players.length)
                 tson.stocks.push(tournaments[t].stock)
             }
+           tson.roomlist = []
+            for(let t = 0;t<games.length;t++){
+                if(games[t].players.length > 0){
+                    tson.roomlist.push([t, games[t].players.length])
+                }
+            }
 
             ws.send(JSON.stringify(tson))
         }else if (JSON.parse(data).joinTournament === 1) {
@@ -432,6 +438,12 @@ wss.on("connection", ws => {
         } else if (JSON.parse(data).pinging == 1) {
             let sjon = {
                 "pinging": `1`
+            }
+            sjon.roomlist = []
+            for(let t = 0;t<games.length;t++){
+                if(games[t].players.length > 0){
+                    sjon.roomlist.push([t, games[t].players.length])
+                }
             }
             sjon.ping = parseInt(JSON.parse(data).ping)
             sjon.serverID = JSON.parse(data).serverID

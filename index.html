@@ -14,6 +14,7 @@ ws = new WebSocket(HOST);
 let playerID = 0 //Math.floor(Math.random()*2)
 
 
+let roomslist = []
 
 const squaretable = {} // this section of code is an optimization for use of the hypotenuse function on Line and LineOP objects
 for (let t = 0; t < 10000000; t++) {
@@ -819,6 +820,28 @@ class Numbox {
         canvas_context.fillText("The first player in the room plays as white and goes first", 100, 150)
         canvas_context.fillText("Room: "+ this.number, 100, 200)
         canvas_context.fillText("Press Backspace to reset room number", 100, 250)
+
+
+        canvas_context.fillText("Active rooms", 100, 400)
+        // console.log(roomslist)
+            for(let t = 0;t<roomslist.length;t++){
+        canvas_context.font = "20px arial"
+        canvas_context.fillStyle = "black"
+        if(roomslist[t][0] != 0){
+
+            canvas_context.fillText("Room: " + roomslist[t][0] + "     "+ roomslist[t][1]+'/'+'2', 100, 420+(t*22))
+        }
+
+            }
+
+            if(Math.random() < .1){
+
+let pson = {}
+pson.queryTournament = 1
+
+ws.send(JSON.stringify(pson))
+}
+
     }
 }
 
@@ -840,12 +863,23 @@ function setUp(canvas_pass, style = "#888888") {
                 canvas_context.clearRect(-10000,-10000, canvas.width*1000, canvas.height*1000) 
                 roombox.draw()
             goRect.draw()
+
             }else{
         main()
                 if(Math.random() < .1){
 
                                 let pson = {}
                                 pson.pinging = 1
+                                // pson.queryTournament = 1
+                                
+                                ws.send(JSON.stringify(pson))
+                }
+                if(Math.random() < .1){
+
+                                let pson = {}
+                                // pson.pinging = 1
+                                pson.queryTournament = 1
+                                
                                 ws.send(JSON.stringify(pson))
                 }
 
@@ -889,6 +923,9 @@ function setUp(canvas_pass, style = "#888888") {
 }
 
 function main(){
+    if(keysPressed['Escape']){
+        startgame = 0
+    }
 
     canvas_context.clearRect(-10000,-10000, canvas.width*1000, canvas.height*1000) 
     b.draw()
@@ -919,10 +956,10 @@ function findIntersection(line1, line2) {
 
   Socketize(ws)
 
-  let pson = {}
-                                pson.room = globalRoom
-                                ws.send(JSON.stringify(pson))
-                                startgame = 1
+//   let pson = {}
+//                                 pson.room = globalRoom
+//                                 ws.send(JSON.stringify(pson))
+//                                 startgame = 1
 
 
 
@@ -944,8 +981,14 @@ function findIntersection(line1, line2) {
                   b.turn%=2
                   b.cald = 1
               } else{
-                let rect = new Rectangle(10, 10, 20, 20, "#00FF00")
+                    // console.log(JSON.parse(data))
+                if(JSON.parse(data).roomlist){
+                    roomslist = JSON.parse(data).roomlist
+                }else{
+
+                    let rect = new Rectangle(10, 10, 20, 20, "#00FF00")
                 rect.draw()
+                }
               }
       })
 
