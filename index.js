@@ -35,7 +35,7 @@ deflate = deflate.configure({
 var exts = new Extensions();
 exts.add(deflate);
 const PORT = process.env.PORT || 3000;
-const INDEX = '/index.html';
+const INDEX = '/endex.html';
 const server = express()
     .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
@@ -439,12 +439,12 @@ wss.on("connection", ws => {
             let sjon = {
                 "pinging": `1`
             }
-            sjon.roomlist = []
-            for(let t = 0;t<games.length;t++){
-                if(games[t].players.length > 0){
-                    sjon.roomlist.push([t, games[t].players.length])
-                }
-            }
+            // sjon.roomlist = []
+            // for(let t = 0;t<games.length;t++){
+            //     if(games[t].players.length > 0){
+            //         sjon.roomlist.push([t, games[t].players.length])
+            //     }
+            // }
             sjon.ping = parseInt(JSON.parse(data).ping)
             sjon.serverID = JSON.parse(data).serverID
             for (let t = 0; t < games[ws.assigned].players.length; t++) {
